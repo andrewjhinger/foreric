@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Pinterest Link Checker</title>
+    <!-- Style sheets -->
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/site.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+</head>
+
+<body ng-app="pinterestCheckerApp">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand"></div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="formInput" ng-controller="pinterestLoadingController">
+        <form name="pinterestForm" ng-controller="pinterestController">
+            <label>
+                Pinterest Username:
+                <input type="text" name="usernameInput" ng-model="pinterestUser"
+                       required ng-trim="true">
+            </label>
+            <label>
+                Pinterest Board (containing Factory Made pins):
+                <input type="text" name="boardInput" ng-model="pinterestBoard"
+                       required ng-trim="true">
+            </label>
+            <input type="submit" class="btn btn-default" ng-click="submitUrl(pinterestUser, pinterestBoard)" />
+            <div class="alert alert-info" ng-show="loading == true" ng-cloak>Loading</div>
+            <div ng-show="successfulCheck" ng-cloak class="pinterestPromoText">
+                <h1>Thank you for sharing our designs!</h1>
+                <h1>Please use code</h1>
+                <h1>{{promoCode}}</h1>
+                <h1>for 10% off your order!</h1>
+            </div>
+            <div ng-show="successfulCheck==false" ng-cloak class="pinterestFailText">
+                <h1>Oops, we can't find Factory Made posts on your board.</h1>
+                <h1>Please post 10 Factory Made products and try again.</h1>
+                <h1>If you believe you've reached this message in error, you can reach out to</h1>
+                <h1>factorymadeweddings@gmail.com</h1>
+            </div>
+        </form>
+    </div>
+
+    <!-- Library Scripts -->
+    <script src="Scripts/angular.js"></script>
+
+    <!-- Application Script -->
+    <script src="app/app.js"></script>
+    <!-- Services -->
+    <!-- Controllers -->
+    <script src="app/controller.js"></script>
+    <script src="app/loadingController.js"></script>
+</body>
+
+</html>
